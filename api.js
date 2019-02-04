@@ -1,7 +1,7 @@
 const request = require('superagent');
 
 request
-  .get('https://riclandmortyapi.com/api/character/')
+  .get('https://rickandmortyapi.com/api/character/')
   .then(res => {
     return res.body.results
       .map(character => character.origin.url)
@@ -12,7 +12,10 @@ request
       return request.get(url);
     }));
   })
-  .then(originRess => originRess.map(originRes => originRes.body) )
-  .then(origins => console.log(origins));
-
-
+  .then(originRess => {
+    return originRess.map(originRess => originRess.body);
+  })
+  .then(origins => {
+    console.log(origins);
+  })
+  .catch(err => console.error(err));
